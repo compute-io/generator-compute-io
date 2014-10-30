@@ -105,6 +105,8 @@ test/
 .gitignore
 .npmignore
 .travis.yml
+.jshintrc
+.editorconfig
 LICENSE
 Makefile
 package.json
