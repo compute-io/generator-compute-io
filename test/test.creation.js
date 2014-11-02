@@ -1,4 +1,4 @@
-
+'use strict';
 
 // MODULES //
 
@@ -14,7 +14,6 @@ var helpers = yeoman.test;
 // TESTS //
 
 describe( 'compute-io generator', function tests() {
-	'use strict';
 
 	// SETUP //
 

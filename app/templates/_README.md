@@ -19,14 +19,18 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 To use the module,
 
 ``` javascript
-var lib = require( '<%= name %>' );
+var foo = require( '<%= name %>' );
 ```
+
+#### foo( arr )
+
+What does this function do?
 
 
 ## Examples
 
 ``` javascript
-var lib = require( '<%= name %>' );
+var foo = require( '<%= name %>' );
 ```
 
 To run the example code from the top-level application directory,
