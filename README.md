@@ -96,6 +96,7 @@ Enter the module description.
 Once you have answered all prompts, you will have the following scaffold:
 
 ```
+benchmark/
 examples/
 	- index.js
 lib/
@@ -152,6 +153,11 @@ The main library file `lib/index.js` is stubbed. The file includes a dummy metho
 #### Test
 
 The generator creates a skeleton test file. Aim for 100% test coverage.
+
+
+#### Benchmark
+
+The generator creates an empty directory for benchmarks. Should the module warrant benchmarks, include the benchmark files in this directory.
 
 
 #### Examples
