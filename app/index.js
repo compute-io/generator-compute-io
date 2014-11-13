@@ -185,6 +185,7 @@ var Generator = yeoman.generators.Base.extend({
 	*	Creates module directories.
 	*/
 	mkdirs: function() {
+		this.mkdir( 'benchmark' );
 		this.mkdir( 'examples' );
 		this.mkdir( 'lib' );
 		this.mkdir( 'test' );
