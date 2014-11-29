@@ -197,6 +197,7 @@ var Generator = yeoman.generators.Base.extend({
 	*/
 	dotFiles: function() {
 		this.copy( 'gitignore', '.gitignore' );
+		this.copy( 'gitattributes', '.gitattributes' );
 		this.copy( 'npmignore', '.npmignore' );
 		this.copy( 'travis.yml', '.travis.yml' );
 		this.copy( 'jshintrc', '.jshintrc' );
