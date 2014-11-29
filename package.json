@@ -43,7 +43,9 @@
     "mocha": "1.x.x",
     "chai": "1.x.x",
     "coveralls": "^2.11.1",
-    "istanbul": "^0.3.0"
+    "istanbul": "^0.3.0",
+    "jshint": "2.x.x",
+    "jshint-stylish": "^1.0.0"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"
