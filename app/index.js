@@ -200,6 +200,7 @@ var Generator = yeoman.generators.Base.extend({
 		this.copy( 'npmignore', '.npmignore' );
 		this.copy( 'travis.yml', '.travis.yml' );
 		this.copy( 'jshintrc', '.jshintrc' );
+		this.copy( 'jshintignore', '.jshintignore' );
 		this.copy( 'editorconfig', '.editorconfig' );
 	}, // end METHOD dotfiles()
 

@@ -107,6 +107,7 @@ test/
 .npmignore
 .travis.yml
 .jshintrc
+.jshintignore
 .editorconfig
 LICENSE
 Makefile
