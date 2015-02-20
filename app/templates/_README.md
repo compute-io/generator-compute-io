@@ -16,8 +16,6 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 
 ## Usage
 
-To use the module,
-
 ``` javascript
 var foo = require( '<%= name %>' );
 ```
@@ -68,12 +66,12 @@ $ make view-cov
 ```
 
 
+---
 ## License
 
 [MIT license](http://opensource.org/licenses/MIT). 
 
 
----
 ## Copyright
 
 Copyright &copy; <%= year %>. <%= author %>.

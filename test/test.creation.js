@@ -1,3 +1,4 @@
+/* global require, describe, it, beforeEach */
 'use strict';
 
 // MODULES //
@@ -47,18 +48,22 @@ describe( 'compute-io generator', function tests() {
 
 	it( 'creates expected files', function test() {
 		var expected = [
-				'.gitignore',
-				'.npmignore',
-				'.travis.yml',
-				'README.md',
-				'TODO.md',
-				'Makefile',
-				'LICENSE',
-				'package.json',
-				'examples/index.js',
-				'test/test.js',
-				'lib/index.js'
-			];
+			'.gitignore',
+			'.gitattributes',
+			'.npmignore',
+			'.travis.yml',
+			'.editorconfig',
+			'.jshintignore',
+			'.jshintrc',
+			'README.md',
+			'TODO.md',
+			'Makefile',
+			'LICENSE',
+			'package.json',
+			'examples/index.js',
+			'test/test.js',
+			'lib/index.js'
+		];
 
 		helpers.assertFile( expected );
 	});
