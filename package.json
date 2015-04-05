@@ -35,7 +35,7 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "npm-name": "^1.0.1",
-    "shelljs": "^0.3.0",
+    "shelljs": "^0.4.0",
     "yeoman-generator": "^0.18.9",
     "yosay": "^1.0.0"
   },
