@@ -15,6 +15,9 @@ var path = require( 'path' ),
 /**
 * FUNCTION: git( name )
 *	Initializes and runs git.
+*
+* @private
+* @param {String} name - repo name
 */
 function git( name ) {
 	var cmd = 'git remote add origin https://github.com/compute-io/' + name + '.git';
@@ -219,9 +222,9 @@ var Generator = yeoman.generators.Base.extend({
 	*/
 	license: function() {
 		var context = {
-				'holder': this.license_holder,
-				'year': this.year
-			};
+			'holder': this.license_holder,
+			'year': this.year
+		};
 
 		this.template( '_LICENSE', 'LICENSE', context );
 	}, // end METHOD license()
@@ -232,12 +235,12 @@ var Generator = yeoman.generators.Base.extend({
 	*/
 	package: function() {
 		var context = {
-				'name': this.moduleName,
-				'repo': this.repo,
-				'author': this.author,
-				'email': this.email,
-				'description': this.description
-			};
+			'name': this.moduleName,
+			'repo': this.repo,
+			'author': this.author,
+			'email': this.email,
+			'description': this.description
+		};
 
 		this.template( '_package.json', 'package.json', context );
 	}, // end METHOD package()
@@ -256,13 +259,13 @@ var Generator = yeoman.generators.Base.extend({
 	*/
 	readme: function() {
 		var context = {
-				'title': this.moduleName.split('-').slice(1).join('-'),
-				'name': this.moduleName,
-				'repo': this.repo,
-				'author': this.author,
-				'year': this.year,
-				'description': this.description
-			};
+			'title': this.moduleName.split('-').slice(1).join('-'),
+			'name': this.moduleName,
+			'repo': this.repo,
+			'author': this.author,
+			'year': this.year,
+			'description': this.description
+		};
 
 		this.template( '_README.md', 'README.md', context );
 	}, // end METHOD readme()
@@ -273,12 +276,12 @@ var Generator = yeoman.generators.Base.extend({
 	*/
 	lib: function() {
 		var context = {
-				'name': this.moduleName.split('-').slice(1).join('-'),
-				'author': this.author,
-				'email': this.email,
-				'description': this.description,
-				'year': this.year
-			};
+			'name': this.moduleName.split('-').slice(1).join('-'),
+			'author': this.author,
+			'email': this.email,
+			'description': this.description,
+			'year': this.year
+		};
 
 		this.template( 'lib/_index.js', 'lib/index.js', context );
 	}, // end METHOD lib()
@@ -289,8 +292,8 @@ var Generator = yeoman.generators.Base.extend({
 	*/
 	test: function() {
 		var context = {
-				'name': this.moduleName
-			};
+			'name': this.moduleName
+		};
 
 		this.template( 'test/_test.js', 'test/test.js', context );
 	}, // end METHOD test()
@@ -309,14 +312,14 @@ var Generator = yeoman.generators.Base.extend({
 	*/
 	install: function() {
 		var config = {
-				'bower': false,
-				'npm': true,
-				'skipInstall': this.options[ 'skip-install' ],
-				'skipMessage': false,
-				'callback': function onFinish() {
-					console.log( '\n...finished.\n' );
-				}
-			};
+			'bower': false,
+			'npm': true,
+			'skipInstall': this.options[ 'skip-install' ],
+			'skipMessage': false,
+			'callback': function onFinish() {
+				console.log( '\n...finished.\n' );
+			}
+		};
 
 		this.on( 'end', function onEnd() {
 			if ( this.git ) {
