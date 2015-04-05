@@ -18,6 +18,6 @@ describe('compute-io generator', function tests() {
 
 	it( 'can be imported' , function test() {
 		var app = require( '../app' );
-		expect( app ).to.exist();
+		expect( app ).to.exist;
 	});
 });
