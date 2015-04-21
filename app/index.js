@@ -51,7 +51,7 @@ var Generator = yeoman.generators.Base.extend({
 
 	/**
 	* METHOD: promptUser()
-	*	Prompts a user for input relevant to the validation module.
+	*	Prompts a user for input relevant to the module.
 	*/
 	promptUser: function() {
 		var next = this.async(),
@@ -275,15 +275,7 @@ var Generator = yeoman.generators.Base.extend({
 	*	Creates a module boilerplate.
 	*/
 	lib: function() {
-		var context = {
-			'name': this.moduleName.split('-').slice(1).join('-'),
-			'author': this.author,
-			'email': this.email,
-			'description': this.description,
-			'year': this.year
-		};
-
-		this.template( 'lib/_index.js', 'lib/index.js', context );
+		this.copy( 'lib/_index.js', 'lib/index.js' );
 	}, // end METHOD lib()
 
 	/**

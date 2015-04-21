@@ -1,31 +1,3 @@
-/**
-*
-*	COMPUTE: <%= name %>
-*
-*
-*	DESCRIPTION:
-*		- <%= description %>
-*
-*
-*	NOTES:
-*		[1]
-*
-*
-*	TODO:
-*		[1]
-*
-*
-*	LICENSE:
-*		MIT
-*
-*	Copyright (c) <%= year %>. <%= author %>.
-*
-*
-*	AUTHOR:
-*		<%= author %>. <%= email %>. <%= year %>.
-*
-*/
-
 'use strict';
 
 // MODULES //
@@ -34,6 +6,11 @@
 
 
 // FUNCTIONS //
+
+// any private utility functions go here...
+
+
+// {{ FOO }} //
 
 /**
 * FUNCTION: foo()
