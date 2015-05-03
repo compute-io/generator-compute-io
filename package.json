@@ -1,6 +1,6 @@
 {
   "name": "generator-compute-io",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "A Yeoman generator for Compute.io modules.",
   "author": {
     "name": "Athan Reines",
