@@ -69,12 +69,12 @@ $ make view-cov
 ---
 ## License
 
-[MIT license](http://opensource.org/licenses/MIT). 
+[MIT license](http://opensource.org/licenses/MIT).
 
 
 ## Copyright
 
-Copyright &copy; <%= year %>. <%= author %>.
+Copyright &copy; <%= year %>. The Compute.io Authors.
 
 
 [npm-image]: http://img.shields.io/npm/v/<%= name %>.svg

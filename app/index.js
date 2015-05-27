@@ -155,14 +155,6 @@ var Generator = yeoman.generators.Base.extend({
 			},
 			{
 				'type': 'input',
-				'name': 'license_holder',
-				'message': 'Author name(s) to include in the license file?',
-				default: function( answers ) {
-					return answers.author;
-				}
-			},
-			{
-				'type': 'input',
 				'name': 'description',
 				'message': 'Module description:',
 				'default': 'Compute module.'
@@ -173,7 +165,6 @@ var Generator = yeoman.generators.Base.extend({
 		this.prompt( prompts, function onAnswers( answers ) {
 			this.author = answers.author;
 			this.email = answers.email;
-			this.license_holder = answers.license_holder;
 			this.moduleName = answers.name;
 			this.description = answers.description;
 			this.git = answers.git;
@@ -222,7 +213,6 @@ var Generator = yeoman.generators.Base.extend({
 	*/
 	license: function() {
 		var context = {
-			'holder': this.license_holder,
 			'year': this.year
 		};
 
