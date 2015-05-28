@@ -22,7 +22,7 @@ For a general overview of Yeoman generators, see the [Getting Started Guide](htt
 $ npm install -g generator-compute-io
 ```
 
-## Usage 
+## Usage
 
 Once installed, navigate to the directory in which you want to place generated files and run
 
@@ -43,7 +43,7 @@ The module name requires the convention that the module be prefixed with `comput
 
 Valid names include: `compute-mean`, `compute-variance`, `compute-sum`, etc. Do __not__ include spaces or special characters in the name; e.g., `compute io correlation @ value`.
 
-Also note that using the generator requires internet access, as module name availability is confirmed on NPM via [npm-name](https://github.com/sindresorhus/npm-name). 
+Also note that using the generator requires internet access, as module name availability is confirmed on NPM via [npm-name](https://github.com/sindresorhus/npm-name).
 
 
 #### Git
@@ -77,13 +77,6 @@ Enter the primary author's name; i.e., in all likelihood that will be your name.
 If you have chosen to initialize the directory as a Git repository, the default will be the email associated with your Github account. This email should be a correspondence address for those individuals wanting to contact you directly with their questions and comments.
 
 If the Github email address is fine, just type `enter`.
-
-
-#### License
-
-Enter the license holder for this module. The default is your name, but this could be the organization for which you work (say, if they are helping sponsor development) or some other entity.
-
-If the default option is fine, just type `enter`.
 
 
 #### Description

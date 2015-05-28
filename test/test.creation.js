@@ -31,7 +31,6 @@ describe( 'compute-io generator', function tests() {
 				'name': 'compute-generator-test',
 				'author': 'Jane Doe',
 				'email': 'jane@doe.com',
-				'license_holder': 'Jane Doe &lt;jane@doe.com&gt;',
 				'description': 'Compute.io generator test module.',
 				'git': false
 			})
