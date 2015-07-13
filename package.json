@@ -26,7 +26,8 @@
   },
   "main": "app/index.js",
   "files": [
-    "app"
+    "app",
+    "elementwise"
   ],
   "repository": {
     "type": "git",
@@ -43,18 +44,19 @@
   },
   "dependencies": {
     "chalk": "^1.0.0",
+    "mkdirp": "^0.5.1",
     "npm-name": "^1.0.1",
     "shelljs": "^0.5.0",
-    "yeoman-generator": "^0.18.9",
+    "yeoman-generator": "^0.20.1",
     "yosay": "^1.0.0"
   },
   "devDependencies": {
-    "mocha": "2.x.x",
+    "mocha": "3.x.x",
     "chai": "2.x.x",
     "coveralls": "^2.11.1",
     "istanbul": "^0.3.0",
     "jshint": "2.x.x",
-    "jshint-stylish": "^2.0.0"
+    "jshint-stylish": "2.x.x"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"

@@ -6,6 +6,7 @@ var path = require( 'path' ),
 	yeoman = require( 'yeoman-generator' ),
 	yosay = require( 'yosay' ),
 	shell = require( 'shelljs' ),
+	mkdirp = require('mkdirp'),
 	npmName = require( 'npm-name' ),
 	chalk = require( 'chalk' );
 
@@ -179,10 +180,11 @@ var Generator = yeoman.generators.Base.extend({
 	*	Creates module directories.
 	*/
 	mkdirs: function() {
-		this.mkdir( 'benchmark' );
-		this.mkdir( 'examples' );
-		this.mkdir( 'lib' );
-		this.mkdir( 'test' );
+		mkdirp( 'benchmark' );
+		mkdirp( 'examples' );
+		mkdirp( 'lib' );
+		mkdirp( 'test' );
+		mkdirp( 'docs/img');
 	}, // end METHOD mkdirs()
 
 	/**
@@ -216,7 +218,11 @@ var Generator = yeoman.generators.Base.extend({
 			'year': this.year
 		};
 
-		this.template( '_LICENSE', 'LICENSE', context );
+		this.fs.copyTpl(
+			this.templatePath( '_LICENSE' ),
+			this.destinationPath( 'LICENSE' ),
+			context
+		);
 	}, // end METHOD license()
 
 	/**
@@ -232,7 +238,11 @@ var Generator = yeoman.generators.Base.extend({
 			'description': this.description
 		};
 
-		this.template( '_package.json', 'package.json', context );
+		this.fs.copyTpl(
+			this.templatePath( '_package.json' ),
+			this.destinationPath( 'package.json' ),
+			context
+		);
 	}, // end METHOD package()
 
 	/**
@@ -257,7 +267,11 @@ var Generator = yeoman.generators.Base.extend({
 			'description': this.description
 		};
 
-		this.template( '_README.md', 'README.md', context );
+		this.fs.copyTpl(
+			this.templatePath( '_README.md' ),
+			this.destinationPath( 'README.md' ),
+			context
+		);
 	}, // end METHOD readme()
 
 	/**
@@ -277,7 +291,11 @@ var Generator = yeoman.generators.Base.extend({
 			'name': this.moduleName
 		};
 
-		this.template( 'test/_test.js', 'test/test.js', context );
+		this.fs.copyTpl(
+			this.templatePath( 'test/_test.js' ),
+			this.destinationPath( 'test/test.js' ),
+			context
+		);
 	}, // end METHOD test()
 
 	/**

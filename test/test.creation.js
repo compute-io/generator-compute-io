@@ -9,7 +9,8 @@ var path = require( 'path' ),
 
 // VARIABLES //
 
-var helpers = yeoman.test;
+var helpers = yeoman.test,
+	assert = yeoman.assert;
 
 
 // TESTS //
@@ -27,7 +28,7 @@ describe( 'compute-io generator', function tests() {
 				'skip-install-message': true,
 				'skip-message': true
 			})
-			.withPrompt({
+			.withPrompts({
 				'name': 'compute-generator-test',
 				'author': 'Jane Doe',
 				'email': 'jane@doe.com',
@@ -64,6 +65,6 @@ describe( 'compute-io generator', function tests() {
 			'lib/index.js'
 		];
 
-		helpers.assertFile( expected );
+		assert.file( expected );
 	});
 });
