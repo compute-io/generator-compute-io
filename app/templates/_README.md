@@ -74,7 +74,7 @@ $ make view-cov
 
 ## Copyright
 
-Copyright &copy; <%= year %>. The Compute.io Authors.
+Copyright &copy; <%= year %>. The [Compute.io](https://github.com/compute-io) Authors.
 
 
 [npm-image]: http://img.shields.io/npm/v/<%= name %>.svg

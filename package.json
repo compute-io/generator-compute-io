@@ -1,6 +1,6 @@
 {
   "name": "generator-compute-io",
-  "version": "0.1.18",
+  "version": "0.1.21",
   "description": "A Yeoman generator for Compute.io modules.",
   "author": {
     "name": "Athan Reines",
@@ -51,8 +51,8 @@
     "yosay": "^1.0.0"
   },
   "devDependencies": {
-    "mocha": "3.x.x",
-    "chai": "2.x.x",
+    "mocha": "2.x.x",
+    "chai": "3.x.x",
     "coveralls": "^2.11.1",
     "istanbul": "^0.3.0",
     "jshint": "2.x.x",

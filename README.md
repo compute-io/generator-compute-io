@@ -227,7 +227,6 @@ $ make view-cov
 Copyright &copy; 2014-2015. The [Compute.io](https://github.com/compute-io) Authors.
 
 
-
 [npm-image]: http://img.shields.io/npm/v/generator-compute-io.svg
 [npm-url]: https://npmjs.org/package/generator-compute-io
 
