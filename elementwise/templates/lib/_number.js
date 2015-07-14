@@ -11,14 +11,14 @@
 * @returns {Number} function value
 */
 <% } else if ( noInputs === 'Two' ) { %>
-	/**
-	* FUNCTION: <%= functionName %>( x, y )
-	*	<%= description %> of two numeric values.
-	*
-	* @param {Number} x - input value
-	* @param {Number} y - second input value
-	* @returns {Number} function value
-	*/
+/**
+* FUNCTION: <%= functionName %>( x, y )
+*	<%= description %> of two numeric values.
+*
+* @param {Number} x - input value
+* @param {Number} y - second input value
+* @returns {Number} function value
+*/
 <% } %>
 function <%= functionName %>( x <% if ( noInputs === 'Two' ) { %>, y <% } %> ) {
 
