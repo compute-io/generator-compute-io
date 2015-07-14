@@ -6,6 +6,9 @@
 var // Expectation library:
 	chai = require( 'chai' ),
 
+	// Deep close to:
+	deepCloseTo = require( './utils/deepcloseto.js' ),
+
 	// Module to be tested:
 	<%= functionName %> = require( './../lib/accessor.js' );
 
@@ -25,7 +28,7 @@ describe( 'accessor <%= functionName %>', function tests() {
 	});
 <% if ( noInputs === 'One' ) { %>
 	it( 'should evaluate the  <%= functionName %> function using an accessor', function test() {
-		var data, actual, expected, i;
+		var data, actual, expected;
 
 		data = [
 			{'x':-3},
@@ -44,9 +47,7 @@ describe( 'accessor <%= functionName %>', function tests() {
 
 		];
 
-		for ( i = 0; i < actual.length; i++ ) {
-			assert.closeTo( actual[ i ], expected[ i ], 1e-7 );
-		}
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		function getValue( d ) {
 			return d.x;
@@ -69,7 +70,6 @@ describe( 'accessor <%= functionName %>', function tests() {
 			[14,-3]
 		];
 
-		// Evaluated on Wolfram Alpha:
 		expected = [
 
 		];
@@ -77,9 +77,8 @@ describe( 'accessor <%= functionName %>', function tests() {
 		actual = new Array( data.length );
 		actual = <%= functionName %>( actual, data, getValue2 );
 
-		for ( i = 0; i < actual.length; i++ ) {
-			assert.closeTo( actual[ i ], expected[ i ], 1e-7 );
-		}
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
+
 		function getValue2( d ) {
 			return d[ 1 ];
 		}
@@ -126,13 +125,10 @@ describe( 'accessor <%= functionName %>', function tests() {
 		actual = <%= functionName %>( actual, data, 2, getValue );
 
 		expected = [
-			0,
-			1,
-			4,
-			9
+
 		];
 
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		function getValue( d ) {
 			return d.x;
@@ -161,13 +157,10 @@ describe( 'accessor <%= functionName %>', function tests() {
 		actual = <%= functionName %>( actual, data, y, getValue );
 
 		expected = [
-			1,
-			1,
-			4,
-			27
+
 		];
 
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		function getValue( d, i ) {
 			return d.x;
@@ -175,7 +168,7 @@ describe( 'accessor <%= functionName %>', function tests() {
 
 	});
 
-	it( 'should perform an element-wise multiplication of another object array using an accessor', function test() {
+	it( 'should evaluate the <%= functionName %> function for two object arrays using an accessor', function test() {
 		var data, actual, expected, y;
 
 		data = [
@@ -196,13 +189,10 @@ describe( 'accessor <%= functionName %>', function tests() {
 		actual = <%= functionName %>( actual, data, y, getValue );
 
 		expected = [
-			1,
-			1,
-			4,
-			27
+
 		];
 
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		function getValue( d, i, j ) {
 			if ( j === 0 ) {
@@ -234,7 +224,7 @@ describe( 'accessor <%= functionName %>', function tests() {
 		actual = <%= functionName %>( actual, data, 1, getValue );
 
 		expected = [ 1, NaN, 3 ];
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		// single non-numeric value
 		y = false;
@@ -242,7 +232,7 @@ describe( 'accessor <%= functionName %>', function tests() {
 		actual = <%= functionName %>( actual, data, y, getValue );
 		expected = [ NaN, NaN, NaN ];
 
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		// numeric array
 		y = [ 1, 2, 3 ];
@@ -250,7 +240,7 @@ describe( 'accessor <%= functionName %>', function tests() {
 		actual = <%= functionName %>( actual, data, y, getValue );
 		expected = [ 1, NaN, 27 ];
 
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		function getValue( d, i ) {
 			return d.x;
@@ -262,7 +252,7 @@ describe( 'accessor <%= functionName %>', function tests() {
 		actual = <%= functionName %>( actual, data, y, getValue );
 		expected = [ 1, NaN, 27 ];
 
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		// object array
 		y = [
@@ -274,7 +264,7 @@ describe( 'accessor <%= functionName %>', function tests() {
 		actual = <%= functionName %>( actual, data, y, getValue2 );
 		expected = [ 1, NaN, 27 ];
 
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		function getValue2( d, i, j ) {
 			if ( j === 0 ) {

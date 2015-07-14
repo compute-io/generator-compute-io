@@ -6,6 +6,9 @@
 var // Expectation library:
 	chai = require( 'chai' ),
 
+	// Deep close to:
+	deepCloseTo = require( './utils/deepcloseto.js' ),
+
 	// Module to be tested:
 	<%= functionName %> = require( './../lib/deepset.js' );
 
@@ -49,9 +52,8 @@ describe( 'deepset <%= functionName %>', function tests() {
 			{'x':}
 		];
 
-		for ( i = 0; i < data.length; i++ ) {
-			assert.closeTo( data[ i ].x, expected[ i ].x, 1e-7 );
-		}
+		assert.isTrue( deepCloseTo( data, expected, 1e-7 ) );
+
 
 		// Custom separator...
 		data = [
@@ -75,9 +77,8 @@ describe( 'deepset <%= functionName %>', function tests() {
 			{'x':[9,]}
 		];
 
-		for ( i = 0; i < data.length; i++ ) {
-			assert.closeTo( data[ i ].x[ 1 ], expected[ i ].x[ 1 ], 1e-7, 'custom separator' );
-		}
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
+
 	});
 
 	it( 'should return an empty array if provided an empty array', function test() {
@@ -126,7 +127,7 @@ describe( 'deepset <%= functionName %>', function tests() {
 		];
 
 		assert.strictEqual( data, actual );
-		assert.deepEqual( data, expected);
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		// Custom separator...
 		data = [
@@ -144,7 +145,7 @@ describe( 'deepset <%= functionName %>', function tests() {
 			{'x':[9,9]}
 		];
 
-		assert.deepEqual( data, expected, 'custom separator' );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 	});
 
 	it( 'should evaluate the <%= functionName %> function when y is an array and deep set', function test() {
@@ -169,7 +170,7 @@ describe( 'deepset <%= functionName %>', function tests() {
 		];
 
 		assert.strictEqual( data, actual );
-		assert.deepEqual( data, expected);
+		assert.isTrue( deepCloseTo( data, expected, 1e-7 ) );
 
 		// Custom separator...
 		data = [
@@ -187,7 +188,8 @@ describe( 'deepset <%= functionName %>', function tests() {
 			{'x':[9,27]}
 		];
 
-		assert.deepEqual( data, expected, 'custom separator' );
+		assert.isTrue( deepCloseTo( data, expected, 1e-7 ) );
+
 	});
 
 	it( 'should return an empty array if provided an empty array', function test() {
@@ -213,7 +215,7 @@ describe( 'deepset <%= functionName %>', function tests() {
 			{'x':[9,NaN]},
 			{'x':[9,NaN]}
 		];
-		assert.deepEqual( data, expected );
+		assert.isTrue( deepCloseTo( data, expected, 1e-7 ) );
 
 		// raising to a scalar
 		data = [
@@ -229,7 +231,7 @@ describe( 'deepset <%= functionName %>', function tests() {
 			{'x':[9,NaN]},
 			{'x':[9,3]}
 		];
-		assert.deepEqual( data, expected );
+		assert.isTrue( deepCloseTo( data, expected, 1e-7 ) );
 
 		data = [
 			{'x':[9,null]},
@@ -245,7 +247,7 @@ describe( 'deepset <%= functionName %>', function tests() {
 			{'x':[9,NaN]},
 			{'x':[9,27]}
 		];
-		assert.deepEqual( data, expected );
+		assert.isTrue( deepCloseTo( data, expected, 1e-7 ) );
 
 		data = [
 			{'x':[9,null]},
@@ -261,8 +263,7 @@ describe( 'deepset <%= functionName %>', function tests() {
 			{'x':[9,NaN]},
 			{'x':[9,27]}
 		];
-		assert.deepEqual( data, expected );
-
+		assert.isTrue( deepCloseTo( data, expected, 1e-7 ) );
 	});
 
 <% } %>

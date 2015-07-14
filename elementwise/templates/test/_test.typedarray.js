@@ -6,6 +6,9 @@
 var // Expectation library:
 	chai = require( 'chai' ),
 
+	// Deep close to:
+	deepCloseTo = require( './utils/deepcloseto.js' ),
+
 	// Module to be tested:
 	<%= functionName %> = require( './../lib/typedarray.js' );
 
@@ -52,9 +55,7 @@ describe( 'typed-array <%= functionName %>', function tests() {
 
 		]);
 
-		for ( i = 0; i < actual.length; i++ ) {
-			assert.closeTo( actual[ i ], expected[ i ], 1e-7 );
-		}
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 	});
 
 	it( 'should return an empty array if provided an empty array', function test() {
@@ -82,7 +83,8 @@ describe( 'typed-array <%= functionName %>', function tests() {
 
 		expected = new Float64Array( [1,1,4,27] );
 
-		assert.deepEqual( expected, actual );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
+
 	});
 
 	it( 'should throw an error if provided two typed arrays of differing lengths', function test() {
@@ -119,7 +121,7 @@ describe( 'typed-array <%= functionName %>', function tests() {
 
 		expected = [ 1, 4, 27, NaN ];
 
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 	});
 

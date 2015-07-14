@@ -12,6 +12,9 @@ var // Expectation library:
 	// Validate a value is NaN:
 	isnan = require( 'validate.io-nan' ),
 
+	// Deep close to:
+	deepCloseTo = require( './utils/deepcloseto.js' ),
+
 	// Module to be tested:
 	<%= functionName %> = require( './../lib' ),
 
@@ -199,7 +202,8 @@ describe( 'compute-<%= functionName %>', function tests() {
 		});
 		assert.notEqual( actual, data );
 		assert.strictEqual( actual.BYTES_PER_ELEMENT, 1 );
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
+
 	});
 
 	it( 'should evaluate the function element-wise using an accessor', function test() {
@@ -396,7 +400,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		data = [ 1, 2 ];
 		actual = <%= functionName %>( 2, data );
 		expected = [ 2, 4 ];
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 	});
 
 	it( 'should evaluate the  <%= functionName %> function for a scalar and a matrix', function test() {
@@ -416,7 +420,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 			'dtype':'int32'
 		});
 		expected = new Int32Array( [10,100] );
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 	});
 
 
@@ -458,7 +462,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		actual = <%= functionName %>( data, 3 );
 		assert.notEqual( actual, data );
 
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		// Mutate...
 		actual = <%= functionName %>( data, 3, {
@@ -484,7 +488,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		actual = <%= functionName %>( data, data );
 		assert.notEqual( actual, data );
 
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		// Mutate...
 		actual = <%= functionName %>( data, data, {
@@ -511,7 +515,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		actual = <%= functionName %>( data, 3 );
 		assert.notEqual( actual, data );
 
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		// Mutate:
 		actual = <%= functionName %>( data, 3, {
@@ -537,7 +541,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 
 		actual = <%= functionName %>( data, data );
 		assert.notEqual( actual, data );
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		// Mutate:
 
@@ -561,7 +565,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		});
 		assert.notEqual( actual, data );
 		assert.strictEqual( actual.BYTES_PER_ELEMENT, 1 );
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 	});
 
 	it( 'should evaluate the <%= functionName %> function for an object array and a scalar using an accessor', function test() {
@@ -586,7 +590,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		});
 		assert.notEqual( actual, data );
 
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		// Mutate:
 		actual = <%= functionName %>( data, 0, {
@@ -630,7 +634,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 			27
 		];
 
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		function getValue( d, i, j ) {
 			if ( j === 0 ) {
@@ -664,7 +668,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 
 		assert.strictEqual( actual, data );
 
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		// Specify a path with a custom separator...
 		data = [
@@ -679,7 +683,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		});
 		assert.strictEqual( actual, data );
 
-		assert.deepEqual( actual, expected );
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 	});
 
 	it( 'should evaluate the <%= functionName %> function for an array with another array and deep set', function test() {

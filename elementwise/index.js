@@ -201,6 +201,7 @@ var Generator = yeoman.generators.Base.extend({
 		mkdirp( 'examples' );
 		mkdirp( 'lib' );
 		mkdirp( 'test' );
+		mkdirp( 'test/utils');
 		mkdirp( 'docs/img');
 	}, // end METHOD mkdirs()
 
@@ -356,6 +357,7 @@ var Generator = yeoman.generators.Base.extend({
 			'noInputs': this.noInputs
 		};
 
+		this.copy( 'test/utils/_deepcloseto.js', 'test/utils/deepcloseto.js' );
 		this.fs.copyTpl(
 			this.templatePath( 'test/_test.accessor.js' ),
 			this.destinationPath( 'test/test.accessor.js' ),
@@ -388,6 +390,11 @@ var Generator = yeoman.generators.Base.extend({
 		);
 		this.fs.copyTpl(
 			this.templatePath( 'test/_test.typedarray.js' ),
+			this.destinationPath( 'test/test.typedarray.js' ),
+			context
+		);
+		this.fs.copyTpl(
+			this.templatePath( 'test/_test.validate.js' ),
 			this.destinationPath( 'test/test.validate.js' ),
 			context
 		);

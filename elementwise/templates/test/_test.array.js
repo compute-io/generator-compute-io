@@ -6,6 +6,9 @@
 var // Expectation library:
 	chai = require( 'chai' ),
 
+	// Deep close to:
+	deepCloseTo = require( './utils/deepcloseto.js' ),
+
 	// Module to be tested:
 	<%= functionName %> = require( './../lib/array.js' );
 
@@ -51,9 +54,8 @@ describe( 'array <%= functionName %>', function tests() {
 
 		];
 
-		for ( i = 0; i < actual.length; i++ ) {
-			assert.closeTo( actual[ i ], expected[ i ], 1e-7 );
-		}
+		assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
+
 	});
 
 	it( 'should return an empty array if provided an empty array', function test() {
@@ -94,7 +96,7 @@ describe( 'array <%= functionName %>', function tests() {
 				25
 			];
 
-			assert.deepEqual( actual, expected );
+			assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 			// Typed arrays...
 			data = new Int32Array( data );
@@ -103,7 +105,7 @@ describe( 'array <%= functionName %>', function tests() {
 			actual = <%= functionName %>( actual, data, 2 );
 			expected = new Int32Array( expected );
 
-			assert.deepEqual( actual, expected );
+			assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 		});
 
 		it( 'should evaluate the function when y is an array', function test() {
@@ -129,14 +131,10 @@ describe( 'array <%= functionName %>', function tests() {
 			actual = <%= functionName %>( actual, data, y );
 
 			expected = [
-				1,
-				1,
-				4,
-				27,
-				256
+
 			];
 
-			assert.deepEqual( actual, expected );
+			assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 			// Typed arrays...
 			data = new Int32Array( data );
@@ -145,7 +143,7 @@ describe( 'array <%= functionName %>', function tests() {
 			actual = <%= functionName %>( actual, data, y );
 			expected = new Int32Array( expected );
 
-			assert.deepEqual( actual, expected );
+			assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 		});
 
 		it( 'should return an empty array if provided an empty array', function test() {
@@ -186,7 +184,7 @@ describe( 'array <%= functionName %>', function tests() {
 			actual = <%= functionName %>( actual, data, y );
 			expected = [ 1, NaN, 27 ];
 
-			assert.deepEqual( actual, expected );
+			assert.isTrue( deepCloseTo( actual, expected, 1e-7 ) );
 
 		});
 

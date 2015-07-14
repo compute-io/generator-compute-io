@@ -3,6 +3,7 @@
 // MODULES //
 
 var isArrayLike = require( 'validate.io-array-like' ),
+	isMatrixLike = require( 'validate.io-matrix-like' ),
 	isTypedArrayLike = require( 'validate.io-typed-array-like' );
 
 <% } %>

@@ -1,4 +1,12 @@
 'use strict';
+<% if ( noInputs !== 'One' ) { %>
+// MODULES //
+
+var isArrayLike = require( 'validate.io-array-like' ),
+	isMatrixLike = require( 'validate.io-matrix-like' ),
+	isTypedArrayLike = require( 'validate.io-typed-array-like' );
+
+<% } %>
 
 // FUNCTIONS //
 
@@ -46,7 +54,9 @@ function <%= functionName %>( out, arr, y, clbk ) {
 		i,
 		arrVal, yVal;
 
-	if ( isTypedArrayLike( y ) ) {
+	if ( isMatrixLike( y ) ) {
+			throw new Error( '<%= functionName %>()::invalid input argument. `y` has to be an array or scalar.' );
+	} else if ( isTypedArrayLike( y ) ) {
 		if ( len !== y.length ) {
 			throw new Error( '<%= functionName %>()::invalid input argument. Input arrays must have the same length.' );
 		}

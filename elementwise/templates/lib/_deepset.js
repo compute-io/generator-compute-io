@@ -6,6 +6,7 @@ var deepSet = require( 'utils-deep-set' ).factory,
 	deepGet = require( 'utils-deep-get' ).factory,
 	<% if ( noInputs !== 'One' ) { %>
 	isArrayLike = require( 'validate.io-array-like' ),
+	isMatrixLike = require( 'validate.io-matrix-like' ),
 	isTypedArrayLike = require( 'validate.io-typed-array-like' ),
 	<% } %>
 	<%= functionName.toUpperCase() %> = require( './number.js' );
@@ -70,7 +71,10 @@ function <%= functionName %>( x, y, path, sep ) {
 	if ( len ) {
 		dget = deepGet( path, opts );
 		dset = deepSet( path, opts );
-		if ( isTypedArrayLike( y ) ) {
+
+		if ( isMatrixLike( y ) ) {
+				throw new Error( '<%= functionName %>()::invalid input argument. `y` has to be an array or scalar.' );
+		} else if ( isTypedArrayLike( y ) ) {
 			for ( i = 0; i < len; i++ ) {
 				v = dget( x[ i ] );
 				if ( typeof v === 'number' ) {

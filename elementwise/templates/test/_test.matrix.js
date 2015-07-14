@@ -9,6 +9,9 @@ var // Expectation library:
 	// Matrix data structure:
 	matrix = require( 'dstructs-matrix' ),
 
+	// Deep close to:
+	deepCloseTo = require( './utils/deepcloseto.js' ),
+
 	// Module to be tested:
 	<%= functionName %> = require( './../lib/matrix.js' ),
 
@@ -61,7 +64,8 @@ describe( 'matrix <%= functionName %>', function tests() {
 		actual = matrix( [5,5], 'int16' );
 		actual = <%= functionName %>( actual, mat );
 
-		assert.deepEqual( actual.data, out.data );
+		assert.isTrue( deepCloseTo( actual.data, out.data, 1e-7 ) );
+
 	});
 
 	it( 'should return an empty matrix if provided an empty matrix', function test() {
@@ -127,7 +131,7 @@ describe( 'matrix <%= functionName %>', function tests() {
 		actual = matrix( [5,5], 'float64' );
 		actual = <%= functionName %>( actual, mat, 2 );
 
-		assert.deepEqual( actual.data, out2.data );
+		assert.isTrue( deepCloseTo( actual.data, out2.data, 1e-7 ) );
 	});
 
 	it( 'should evaluate the <%= functionName %> function for a matrix and a matrix', function test() {
@@ -136,7 +140,7 @@ describe( 'matrix <%= functionName %>', function tests() {
 		actual = matrix( [5,5], 'float64' );
 		actual = <%= functionName %>( actual, mat, mat );
 
-		assert.deepEqual( actual.data, out1.data );
+		assert.isTrue( deepCloseTo( actual.data, out1.data, 1e-7 ) );
 	});
 
 	it( 'should return an empty matrix if provided an empty matrix', function test() {
