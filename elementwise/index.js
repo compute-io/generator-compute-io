@@ -165,6 +165,16 @@ var Generator = yeoman.generators.Base.extend({
 				'name': 'functionName',
 				'message': 'JavaScript name of the function to be applied element-wise:',
 				'default': 'fun'
+			},
+			{
+				type: 'list',
+				name: 'noInputs',
+				message: 'How many inputs does the function have?',
+				choices: [
+					'One',
+					'Two',
+					'Many',
+				]
 			}
 		];
 
@@ -174,6 +184,7 @@ var Generator = yeoman.generators.Base.extend({
 			this.email = answers.email;
 			this.moduleName = answers.name;
 			this.functionName = answers.functionName;
+			this.noInputs = answers.noInputs;
 			this.description = answers.description;
 			this.git = answers.git;
 			this.repo = answers.repo;
@@ -288,7 +299,8 @@ var Generator = yeoman.generators.Base.extend({
 	lib: function() {
 		var context = {
 			'description': this.description,
-			'functionName': this.functionName
+			'functionName': this.functionName,
+			'noInputs': this.noInputs
 		};
 
 		this.fs.copyTpl(

@@ -7,9 +7,10 @@
 *	<%= description %> of a numeric value.
 *
 * @param {Number} x - input value
+<% if ( noInputs === 'Two' ) { %>* @param {Number} y - second input value <% } %>
 * @returns {Number} function value
 */
-function <%= functionName %>( x ) {
+function <%= functionName %>( x <% if ( noInputs === 'Two' ) { %>, y <% } %> ) {
 
 } // end FUNCTION <%= functionName %>()
 
