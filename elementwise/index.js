@@ -352,7 +352,8 @@ var Generator = yeoman.generators.Base.extend({
 	test: function() {
 		var context = {
 			'name': this.moduleName,
-			'functionName': this.functionName
+			'functionName': this.functionName,
+			'noInputs': this.noInputs
 		};
 
 		this.fs.copyTpl(

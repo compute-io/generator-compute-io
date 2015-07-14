@@ -168,7 +168,7 @@ function <%= functionName %>( x, y, options ) {
 		if ( !isNumber( y ) ) {
 			return NaN;
 		}
-		return pow6( x, y );
+		return <%= functionName %>6( x, y );
 	}
 	if ( arguments.length > 2 ) {
 		err = validate( opts, options );
@@ -189,7 +189,7 @@ function <%= functionName %>( x, y, options ) {
 		} else {
 			out = x;
 		}
-		return pow4( out, x, y );
+		return <%= functionName %>4( out, x, y );
 	}
 	if ( isTypedArrayLike( x ) ) {
 		if ( opts.copy === false ) {
@@ -202,13 +202,13 @@ function <%= functionName %>( x, y, options ) {
 			}
 			out = new ctor( x.length );
 		}
-		return pow5( out, x, y );
+		return <%= functionName %>5( out, x, y );
 	}
 	if ( isArrayLike( x ) ) {
 		// Handle deepset first...
 		if ( opts.path ) {
 			opts.sep = opts.sep || '.';
-			return pow3( x, y, opts.path, opts.sep );
+			return <%= functionName %>3( x, y, opts.path, opts.sep );
 		}
 		// Handle regular and accessor arrays next...
 		if ( opts.copy === false ) {
@@ -225,9 +225,9 @@ function <%= functionName %>( x, y, options ) {
 			out = new Array( x.length );
 		}
 		if ( opts.accessor ) {
-			return pow2( out, x, y, opts.accessor );
+			return <%= functionName %>2( out, x, y, opts.accessor );
 		}
-		return pow1( out, x, y );
+		return <%= functionName %>1( out, x, y );
 	}
 	return NaN;
 } // end FUNCTION <%= functionName %>()

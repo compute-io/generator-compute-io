@@ -25,7 +25,7 @@ var expect = chai.expect,
 // TESTS //
 
 describe( 'matrix <%= functionName %>', function tests() {
-
+<% if ( noInputs === 'One' ) { %>
 	var out,
 		mat,
 		d1,
@@ -79,5 +79,81 @@ describe( 'matrix <%= functionName %>', function tests() {
 		mat = matrix( [0,0] );
 		assert.deepEqual( <%= functionName %>( out, mat ).data, expected );
 	});
+
+<% } else if ( noInputs === 'Two' ) { %>
+	var out1, out2,
+		mat,
+		d1,
+		d2,
+		d3,
+		i;
+
+	d1 = new Float64Array( 25 );
+	d2 = new Float64Array( 25 );
+	d3 = new Float64Array( 25 );
+	for ( i = 0; i < d1.length; i++ ) {
+		d1[ i ] = i;
+		d2[ i ] = <%= functionName.toUpperCase() %>( i, i );
+		d3[ i ] = <%= functionName.toUpperCase() %>( i, 2 );
+	}
+
+	beforeEach( function before() {
+		mat = matrix( d1, [5,5], 'float64' );
+		out1 = matrix( d2, [5,5], 'float64' );
+		out2 = matrix( d3, [5,5], 'float64' );
+	});
+
+	it( 'should export a function', function test() {
+		expect( <%= functionName %> ).to.be.a( 'function' );
+	});
+
+	it( 'should throw an error if provided unequal length matrices', function test() {
+		expect( badValues ).to.throw( Error );
+		function badValues() {
+			<%= functionName %>( matrix( [10,10] ), mat, 1 );
+		}
+	});
+
+	it( 'should throw an error if provided a y matrix which is not of equal dimensionality as the x matrix', function test() {
+		expect( badValues ).to.throw( Error );
+		function badValues() {
+			<%= functionName %>( matrix( [5,5] ), mat, matrix( [10,10] ) );
+		}
+	});
+
+	it( 'should evaluate the <%= functionName %> function for a matrix and a scalar', function test() {
+		var actual;
+
+		actual = matrix( [5,5], 'float64' );
+		actual = <%= functionName %>( actual, mat, 2 );
+
+		assert.deepEqual( actual.data, out2.data );
+	});
+
+	it( 'should evaluate the <%= functionName %> function for a matrix and a matrix', function test() {
+		var actual;
+
+		actual = matrix( [5,5], 'float64' );
+		actual = <%= functionName %>( actual, mat, mat );
+
+		assert.deepEqual( actual.data, out1.data );
+	});
+
+	it( 'should return an empty matrix if provided an empty matrix', function test() {
+		var out, mat, expected;
+
+		out = matrix( [0,0] );
+		expected = matrix( [0,0] ).data;
+
+		mat = matrix( [0,10] );
+		assert.deepEqual( <%= functionName %>( out, mat, 1 ).data, expected );
+
+		mat = matrix( [10,0] );
+		assert.deepEqual( <%= functionName %>( out, mat, 1 ).data, expected );
+
+		mat = matrix( [0,0] );
+		assert.deepEqual( <%= functionName %>( out, mat, 1 ).data, expected );
+	});
+<% } %>
 
 });

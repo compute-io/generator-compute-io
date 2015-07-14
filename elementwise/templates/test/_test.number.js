@@ -23,9 +23,13 @@ describe( 'number <%= functionName %>', function tests() {
 	it( 'should export a function', function test() {
 		expect( <%= functionName %> ).to.be.a( 'function' );
 	});
-
+<% if ( noInputs === 'One' ) { %>
 	it( 'should evaluate the function', function test() {
 		assert.closeTo( <%= functionName %>( 0 ), 0, 1e-4 );
 	});
-
+<% } else if ( noInputs === 'Two' ) { %>
+	it( 'should evaluate the function', function test() {
+		assert.closeTo( <%= functionName %>( 0, 0 ), 0, 1e-4 );
+	});
+<% } %>
 });
