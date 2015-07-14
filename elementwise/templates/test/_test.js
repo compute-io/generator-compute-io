@@ -53,7 +53,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		}
 		function badValue( value ) {
 			return function() {
-				<%= functionName %>( [1,2,3], {
+				<%= functionName %>( [1,2,3],  <% if ( noInputs === 'Two' ) { %> 1, <% } {
 					'accessor': value
 				});
 			};
@@ -71,7 +71,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		}
 		function badValue( value ) {
 			return function() {
-				<%= functionName %>( [1,2,3], <% if ( noInputs === 'Two' ) { %>, 1, <% } %> {
+				<%= functionName %>( [1,2,3], <% if ( noInputs === 'Two' ) { %> 1, <% } %> {
 					'dtype': value
 				});
 			};
@@ -89,7 +89,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		}
 		function badValue( value ) {
 			return function() {
-				<%= functionName %>( new Int8Array([1,2,3]), <% if ( noInputs === 'Two' ) { %>, 1, <% } %> {
+				<%= functionName %>( new Int8Array([1,2,3]), <% if ( noInputs === 'Two' ) { %> 1, <% } %> {
 					'dtype': value
 				});
 			};
@@ -107,7 +107,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		}
 		function badValue( value ) {
 			return function() {
-				<%= functionName %>( matrix( [2,2] ), <% if ( noInputs === 'Two' ) { %>, 1, <% } %> {
+				<%= functionName %>( matrix( [2,2] ), <% if ( noInputs === 'Two' ) { %> 1, <% } %> {
 					'dtype': value
 				});
 			};
@@ -126,7 +126,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		];
 
 		for ( var i = 0; i < values.length; i++ ) {
-			assert.isTrue( isnan( <%= functionName %>( values[ i ]<% if ( noInputs === 'Two' ) { %>, 1, <% } %> ) ) );
+			assert.isTrue( isnan( <%= functionName %>( values[ i ]<% if ( noInputs === 'Two' ) { %> 1, <% } %> ) ) );
 		}
 	});
 
@@ -747,8 +747,8 @@ describe( 'compute-<%= functionName %>', function tests() {
 		d3 = new Int32Array( 100 );
 		for ( i = 0; i < d1.length; i++ ) {
 			d1[ i ] = i;
-			d2[ i ] = Math.<%= functionName %>( i, i );
-			d3[ i ] = Math.<%= functionName %>( i, 2 );
+			d2[ i ] = <%= functionName.toUpperCase() %>( i, i );
+			d3[ i ] = <%= functionName.toUpperCase() %>( i, 2 );
 		}
 
 		// Raise matrix elements to a scalar power
@@ -785,7 +785,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		d2 = new Uint16Array( 100 );
 		for ( i = 0; i < d1.length; i++ ) {
 			d1[ i ] = i;
-			d2[ i ] = Math.<%= functionName %>( i, 2 );
+			d2[ i ] = <%= functionName.toUpperCase() %>( i, 2 );
 		}
 		mat = matrix( d1, [10,10], 'int16' );
 		out = <%= functionName %>( mat, 2, {
