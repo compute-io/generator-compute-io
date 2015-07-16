@@ -53,7 +53,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		}
 		function badValue( value ) {
 			return function() {
-				<%= functionName %>( [1,2,3],  <% if ( noInputs === 'Two' ) { %> 1, <% } {
+				<%= functionName %>( [1,2,3],  <% if ( noInputs === 'Two' ) { %> 1, <% } %> {
 					'accessor': value
 				});
 			};
@@ -126,7 +126,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		];
 
 		for ( var i = 0; i < values.length; i++ ) {
-			assert.isTrue( isnan( <%= functionName %>( values[ i ]<% if ( noInputs === 'Two' ) { %> 1, <% } %> ) ) );
+			assert.isTrue( isnan( <%= functionName %>( values[ i ]<% if ( noInputs === 'Two' ) { %>, 1 <% } %> ) ) );
 		}
 	});
 
@@ -357,6 +357,13 @@ describe( 'compute-<%= functionName %>', function tests() {
 
 <% } else if ( noInputs === 'Two' ) { %>
 
+	it( 'should throw an error if provided only one argument', function test() {
+		expect( badValue ).to.throw( Error );
+		function badValue() {
+				 <%= functionName %>( [1,2,3] );
+		}
+	});
+
 	it( 'should throw an error if provided a number as the first argument and an not applicable option', function test() {
 		var values = [
 			{'accessor': function getValue( d ) { return d; } },
@@ -470,7 +477,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		});
 		assert.strictEqual( actual, data );
 
-		assert.deepEqual( data, expected );
+		assert.isTrue( deepCloseTo( data, expected, 1e-7 ) );
 
 	});
 
@@ -496,7 +503,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		});
 		assert.strictEqual( actual, data );
 
-		assert.deepEqual( data, expected );
+		assert.isTrue( deepCloseTo( data, expected, 1e-7 ) );
 
 	});
 
@@ -524,7 +531,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		assert.strictEqual( actual, data );
 		expected = new Int8Array( [ 0, 1, 8, 27 ] );
 
-		assert.deepEqual( data, expected );
+		assert.isTrue( deepCloseTo( data, expected, 1e-7 ) );
 	});
 
 	it( 'should evaluate the <%= functionName %> function for a typed array and another typed array', function test() {
@@ -551,7 +558,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		expected = new Int8Array( [ 1, 1, 4, 27 ] );
 		assert.strictEqual( actual, data );
 
-		assert.deepEqual( data, expected );
+		assert.isTrue( deepCloseTo( data, expected, 1e-7 ) );
 	});
 
 	it( 'should evaluate the <%= functionName %> function for a typed array and a scalar and return an array of a specific type', function test() {
@@ -599,7 +606,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		});
 		assert.strictEqual( actual, data );
 
-		assert.deepEqual( data, expected );
+		assert.isTrue( deepCloseTo( data, expected, 1e-7 ) );
 
 		function getValue( d ) {
 			return d[ 1 ];
@@ -710,7 +717,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 		];
 
 		assert.strictEqual( data, actual );
-		assert.deepEqual( data, expected);
+		assert.isTrue( deepCloseTo( data, expected, 1e-7 ) );
 
 		// Custom separator...
 		data = [
@@ -731,7 +738,7 @@ describe( 'compute-<%= functionName %>', function tests() {
 			{'x':[9,27]}
 		];
 
-		assert.deepEqual( data, expected, 'custom separator' );
+		assert.isTrue( deepCloseTo( data, expected, 1e-7 ), 'custom separator' );
 	});
 
 	it( 'should evaluate the <%= functionName %> function for a matrix and a scalar', function test() {

@@ -358,6 +358,7 @@ var Generator = yeoman.generators.Base.extend({
 		};
 
 		this.copy( 'test/utils/_deepcloseto.js', 'test/utils/deepcloseto.js' );
+
 		this.fs.copyTpl(
 			this.templatePath( 'test/_test.accessor.js' ),
 			this.destinationPath( 'test/test.accessor.js' ),

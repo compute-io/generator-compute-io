@@ -9,6 +9,9 @@ var // Expectation library:
 	// Deep close to:
 	deepCloseTo = require( './utils/deepcloseto.js' ),
 
+	// Matrix data structure:
+	matrix = require( 'dstructs-matrix' ),
+
 	// Module to be tested:
 	<%= functionName %> = require( './../lib/deepset.js' );
 
@@ -66,7 +69,7 @@ describe( 'deepset <%= functionName %>', function tests() {
 			{'x':[9,3]}
 		];
 
-		data = <%= functionName %>( data, 'x/1', '/' );
+		actual = <%= functionName %>( data, 'x/1', '/' );
 		expected = [
 			{'x':[9,]},
 			{'x':[9,]},
@@ -264,6 +267,23 @@ describe( 'deepset <%= functionName %>', function tests() {
 			{'x':[9,27]}
 		];
 		assert.isTrue( deepCloseTo( data, expected, 1e-7 ) );
+	});
+
+	it( 'should throw an error if provided a matrix as y argument', function test() {
+		var data, y;
+
+		data = [
+			{'x':[9,0]},
+			{'x':[9,1]},
+			{'x':[9,2]},
+			{'x':[9,3]}
+		];
+		y = matrix( new Int32Array( [1,2,3,4] ), [2,2] );
+
+		expect( foo ).to.throw( Error );
+		function foo() {
+			 <%= functionName %>(data, y, 'x.1' );
+		}
 	});
 
 <% } %>

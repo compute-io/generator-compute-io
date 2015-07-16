@@ -9,6 +9,9 @@ var // Expectation library:
 	// Deep close to:
 	deepCloseTo = require( './utils/deepcloseto.js' ),
 
+	// Matrix data structure:
+	matrix = require( 'dstructs-matrix' ),
+
 	// Module to be tested:
 	<%= functionName %> = require( './../lib/array.js' );
 
@@ -196,6 +199,13 @@ describe( 'array <%= functionName %>', function tests() {
 			expect( foo2 ).to.throw( Error );
 			function foo2() {
 				<%= functionName %>( [], [1,2], new Int32Array( [1,2,3] ) );
+			}
+		});
+
+		it( 'should throw an error if provided a matrix as y argument', function test() {
+			expect( foo ).to.throw( Error );
+			function foo() {
+				<%= functionName %>( [], [1,2,3,4], matrix( new Int32Array( [1,2,3,4] ), [2,2] ) );
 			}
 		});
 
